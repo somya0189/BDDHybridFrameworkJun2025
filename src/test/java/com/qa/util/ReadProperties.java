@@ -89,7 +89,7 @@ public class ReadProperties {
 	}
 
 	/**
-	 * @return
+	 * @return This method is to read username from config.Properties
 	 */
 	public static String getAppUserName() {
 
@@ -98,7 +98,7 @@ public class ReadProperties {
 	}
 	
 	/**
-	 * @return
+	 * @return This method is to read password from config.Properties
 	 */
 	public static String getAppPassword() {
 
@@ -106,7 +106,7 @@ public class ReadProperties {
 
 	}
 	/**
-	 * @return
+	 * @return This method is for FluentWaitTime
 	 */
 	public static long getFluentWaitTime() {
 
