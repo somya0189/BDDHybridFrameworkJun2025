@@ -17,7 +17,7 @@ import java.util.Properties;
 public class ReadProperties {
 	
 	/**
-	 * @return This method is used to read and load properties from config properties file
+	 * @return This method is used to read and load properties from config.Properties file
 	 */
 	public static Properties loadProperties() {
 
@@ -66,7 +66,7 @@ public class ReadProperties {
 	}
 
 	/**
-	 * @return This method is used to read App URL
+	 * @return This method is used to read AppURL
 	 */
 	public static String getappURL() {
 
@@ -78,7 +78,7 @@ public class ReadProperties {
 
 	
 	/**
-	 * @return
+	 * @return This method is to read implicit time form config.Properties
 	 */
 	public static long implicitWaitTime() {
 
