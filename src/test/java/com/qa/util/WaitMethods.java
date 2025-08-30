@@ -15,6 +15,23 @@ public class WaitMethods {
 	
 	WebDriver driver;
 	
+	/**
+	 * @author  This class has common methods to configure the implicit and
+	 *         explicit wait times.
+	 *
+	 */
+
+
+
+		public static String ELEMENT_TO_BE_CLICKABLE = "elementTobeClickable";
+		public static String ELEMENT_TO_BE_VISIBLE = "visibilityOf";
+		public static String STALENESS_OF_ELEMENT = "stalenessof";
+
+		/**
+		 * @param milisec
+		 *            This method will help to wait for specified time
+		 */
+	
 	public void staticWait(long milisec){
 
 		try {
@@ -24,13 +41,18 @@ public class WaitMethods {
 		} 
 		catch (InterruptedException e) {
 
-			// TODO Auto-generated catch block
+			
 
 			e.printStackTrace();
 
 		}
 
 	}
+	/**
+	 * @author This method will wait for the condition of specific element
+	 *         for a configured time in config.properties file.
+	 *
+	 */
 	public static WebElement waitFor(WebDriver driver, WebElement elem, String waitType, Scenario scenario) {
 
 		 
