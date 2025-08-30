@@ -6,17 +6,25 @@ import org.openqa.selenium.support.ui.Select;
 
 import cucumber.api.Scenario;
 
+/**
+ * @author
+ * This class has all Selenium web element methods with wait mechanism applied
+ * with the exception handling.
+ *
+ */
+
 public class ElementActions {
 	
-	WebDriver driver;
-
-	 
-
-	public static String ELEMENT_TO_BE_CLICKABLE = "elementTobeClickable";
-
-	public static String ELEMENT_TO_BE_VISIBLE = "visibilityOf";
-
-	public static String STALENESS_OF_ELEMENT = "stalenessof";
+	/**
+	 * @param driver
+	 * @param elem
+	 * @param scenario
+	 * @param textotype
+	 *            This method will accept the text to type and wait for fluent
+	 *            wait time until element i click-able and then type text
+	 *
+	 */	
+	
 	public static void sendKeys(WebDriver driver, WebElement elem, Scenario scenario, String texttoType) {
 		try {
 			WaitMethods.waitFor(driver, elem, WaitMethods.ELEMENT_TO_BE_CLICKABLE, scenario);
@@ -31,7 +39,13 @@ public class ElementActions {
 			scenario.write(" Error on typeing the text in element after wating !");
 			}
 		}
-	
+	/**
+	 * @param driver
+	 * @param elem
+	 * @param scenario
+	 * @return This method will wait for fluent wait time and when element is
+	 *         visible get the text and return the String value.
+	 */
 	public static String getText(WebDriver driver, WebElement elem, Scenario scenario) {
 		String texttoReturn = null;
 		try {
@@ -48,7 +62,14 @@ public class ElementActions {
 			}
 		return texttoReturn;
 		}
-	
+	/**
+	 * @param driver
+	 * @param elem
+	 * @param scenario
+	 * @param option
+	 * @return This method will accept option as parameter and select the value
+	 *         from the drop-down.
+	 */
 	public static void selectOptionFromDropDown(WebDriver driver, WebElement elem, Scenario scenario, String option) {
 		try {
 			WaitMethods.waitFor(driver, elem, WaitMethods.ELEMENT_TO_BE_CLICKABLE, scenario);
@@ -64,4 +85,43 @@ public class ElementActions {
 			scenario.write(" Error while selecting the option from Dropdown! ");
 			}
 		}
+	/**
+	 * @param driver
+	 * @param elem
+	 * @param scenario
+	 * This method will take element as a parameter and wait for 
+	 * explicit wait time and then perform click operation
+	 */
+	public static void clickElement(WebDriver driver, WebElement elem, Scenario scenario) {
+		try {
+			WaitMethods.waitFor(driver, elem, WaitMethods.ELEMENT_TO_BE_CLICKABLE, scenario);
+			} 
+		catch (Exception E) {
+			scenario.write(" Error while waiting for clicking on Emmenet ");
+			}
+		try {
+			elem.click();
+			} 
+		catch (Exception E) {
+			scenario.write(" Error on clicking the element after wating !");
+			}
+		}
+	/**
+	 * @author sony
+	 * This method will clear the existing values from the field
+	 */
+	public static void clearFieldvalue(WebDriver driver, WebElement elem, Scenario scenario) {
+		try {
+			WaitMethods.waitFor(driver, elem, WaitMethods.ELEMENT_TO_BE_CLICKABLE, scenario);
+			} 
+		catch (Exception E) {
+			scenario.write(" Error while waiting for clicking on Emmenet ");
+			}
+		try {
+			elem.clear();
+			} 
+		catch (Exception E) {
+			scenario.write(" Error on clicking the element after wating !");
+			}
+	}
 }
