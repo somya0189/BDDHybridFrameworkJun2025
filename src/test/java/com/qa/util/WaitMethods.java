@@ -11,105 +11,63 @@ import org.openqa.selenium.support.ui.Wait;
 
 import cucumber.api.Scenario;
 
+/**
+ * @author user This class has common method to configure the implicit &
+ *         explicit wait times
+ */
 public class WaitMethods {
 	
 	WebDriver driver;
-	
+
+	public static String ELEMENT_TO_BE_CLICKABLE = "elementTobeClickable";
+	public static String ELEMENT_TO_BE_VISIBLE = "visibilityOf";
+	public static String STALENESS_OF_ELEMENT = "stalenessof";
+
 	/**
-	 * @author  This class has common methods to configure the implicit and
-	 *         explicit wait times.
-	 *
+	 * @param milisec
+	 * This method will help to 
 	 */
-
-
-
-		public static String ELEMENT_TO_BE_CLICKABLE = "elementTobeClickable";
-		public static String ELEMENT_TO_BE_VISIBLE = "visibilityOf";
-		public static String STALENESS_OF_ELEMENT = "stalenessof";
-
-		/**
-		 * @param milisec
-		 *            This method will help to wait for specified time
-		 */
-	
-	public void staticWait(long milisec){
-
+	public static void staticWait(long milisec) {
 		try {
-
 			Thread.sleep(milisec);
-
-		} 
-		catch (InterruptedException e) {
-
-			
-
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-
 		}
-
 	}
-	/**
-	 * @author This method will wait for the condition of specific element
-	 *         for a configured time in config.properties file.
-	 *
-	 */
+	
+	
 	public static WebElement waitFor(WebDriver driver, WebElement elem, String waitType, Scenario scenario) {
 
-		 
-
+		@SuppressWarnings("deprecation")
 		Wait<WebDriver> wait = new FluentWait<WebDriver>(driver)
-
 				.withTimeout(ReadProperties.getFluentWaitTime(), TimeUnit.SECONDS)
-
 				.pollingEvery(60, TimeUnit.MILLISECONDS).ignoring(NoSuchElementException.class);
-
 		try {
-
 			switch (waitType) {
-
 			case "elementTobeClickable":
-
 				wait.until(ExpectedConditions.elementToBeClickable(elem));
-
 				break;
-
 			case "visibilityOf":
-
 				wait.until(ExpectedConditions.visibilityOf(elem));
-
 				break;
-
 			case "elementToBeSelected":
-
 				wait.until(ExpectedConditions.elementToBeSelected(elem));
-
 				break;
-
 			case "stalenessof":
-
 				wait.until(ExpectedConditions.stalenessOf(elem));
-
 				break;
-
 			default:
-
 				wait.until(ExpectedConditions.visibilityOf(elem));
-
 			}
-
- 
 
 		} catch (Exception E) {
 
- 
-
 			scenario.write("There is some Exception in Fluent Wait checking--  " + E.getMessage());
-
 		}
 
- 
-
 		return elem;
-
 	}
+	
+
 }
