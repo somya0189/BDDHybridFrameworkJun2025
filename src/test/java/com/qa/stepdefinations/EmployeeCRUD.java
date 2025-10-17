@@ -64,26 +64,53 @@ public class EmployeeCRUD extends Base {
 	}
 
 	@Then("^I  verify employeeAdded in list with  first name as \"([^\"]*)\" and mname as \"([^\"]*)\" and lName as \"([^\"]*)\"$")
-	public void i_verify_employeeAdded_in_list_with_first_name_as_and_mname_as_and_lName_as(String arg1, String arg2,
-			String arg3) throws Throwable {
-		System.out.println("Selenium code is added here");
+	public void i_verify_employeeAdded_in_list_with_first_name_as_and_mname_as_and_lName_as(String fName, String mName,String LName) throws Throwable {
+		scenario.write(" Searching and verifying employee is added ");
+		WaitMethods.staticWait(5000);
+		objAddEmployeePage.navigateToEmpListPage();
+
+		Assert.assertEquals(fName + " " + mName, objAddEmployeePage.searchEmp(fName, mName));
+
+		WaitMethods.staticWait(5000);
+
+		scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
 	}
 
 	@When("^I click on Edit button and update below values and save the Data$")
-	public void i_click_on_Edit_button_and_update_below_values_and_save_the_Data(DataTable arg1) throws Throwable {
-		System.out.println("Selenium code is added here");
-	}
+	public void i_click_on_Edit_button_and_update_below_values_and_save_the_Data(DataTable editEmpDataTable) throws Throwable {
+		
+		scenario.write(" Editing the emp information ");
+		WaitMethods.staticWait(5000);
+		objAddEmployeePage.editEmp(editEmpDataTable.raw().get(0).get(1), editEmpDataTable.raw().get(1).get(1),editEmpDataTable.raw().get(2).get(1));
+
+		WaitMethods.staticWait(5000);
+
+		scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
+		}
+	
 
 	@Then("^I search the employee and ensure that it is searched using below values$")
-	public void i_search_the_employee_and_ensure_that_it_is_searched_using_below_values(DataTable arg1)
-			throws Throwable {
-		System.out.println("Selenium code is added here");
+	public void i_search_the_employee_and_ensure_that_it_is_searched_using_below_values(DataTable editedEmpTablevalue)throws Throwable {
+		scenario.write(" Searching and verifying employee is updated ");
+		WaitMethods.staticWait(5000);
+		objAddEmployeePage.navigateToEmpListPage();
+
+		Assert.assertEquals(editedEmpTablevalue.raw().get(0).get(1) + " " +editedEmpTablevalue.raw().get(1).get(1),objAddEmployeePage.searchEmp(editedEmpTablevalue.raw().get(0).get(1),editedEmpTablevalue.raw().get(1).get(1)));
+        WaitMethods.staticWait(5000);
+
+		scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
 	}
 
 	@Then("^I select and Delete the Updated Employee and verify employee is not  in search result$")
 	public void i_select_and_Delete_the_Updated_Employee_and_verify_employee_is_not_in_search_result()
 			throws Throwable {
-		System.out.println("Selenium code is added here");
+		scenario.write(" DeletingSearchedUpdated Record  ");
+
+		Assert.assertEquals("No Records Found", objAddEmployeePage.deleteUdpateEmp());
+
+		WaitMethods.staticWait(5000);
+
+		scenario.embed(CaptureScreenshot.captureImage(driver), "image/png");
 	}
 
 	@After

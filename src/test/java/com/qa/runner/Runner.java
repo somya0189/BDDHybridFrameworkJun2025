@@ -9,8 +9,9 @@ import cucumber.api.junit.Cucumber;
 
 @CucumberOptions(features = "src/test/resources/features", glue = { "com.qa.stepdefinations" }, tags = {
 
-		"@executeallfromJenkins" }, plugin = { "pretty", "html:target/cucumber-reports" }, monochrome = true)
-
+		"@BuzzCRUDTest" }, plugin = { "pretty", "json:target/cucumber-reports/Cucumber.json" }, monochrome = true)
+//json:target/cucumber-reports/Cucumber.json : this is for generating reports from jenkins
+//html:target/cucumber-reports : 
 public class Runner {
 
 }
